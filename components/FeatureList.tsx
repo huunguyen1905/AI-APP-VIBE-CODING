@@ -1,6 +1,7 @@
+
 import React from 'react';
 import { Terminal, Gift, Cpu, Database, Code2, Globe, MessageSquare, Zap } from 'lucide-react';
-import { FEATURES } from '../constants';
+import { FEATURES, PRICING } from '../constants';
 
 const FeatureList: React.FC = () => {
   // Mapping icons to modules for a richer visual experience
@@ -16,6 +17,10 @@ const FeatureList: React.FC = () => {
         <Globe className="w-5 h-5" />  // Module 8: Live
     ];
     return icons[index] || <Terminal className="w-5 h-5" />;
+  };
+
+  const formatCurrency = (amount: number) => {
+    return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(amount);
   };
 
   return (
@@ -81,7 +86,7 @@ const FeatureList: React.FC = () => {
 
       <div className="pt-4 mt-4 border-t border-dashed border-gray-200 text-center font-mono text-sm">
           <span className="text-gray-400">total_value = </span> 
-          <span className="text-violet-600 font-bold text-lg">13.200.000đ</span>
+          <span className="text-violet-600 font-bold text-lg">{formatCurrency(PRICING.originalPrice)}</span>
           <span className="text-gray-400">;</span>
       </div>
     </div>

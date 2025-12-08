@@ -36,8 +36,8 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
     // Kiểm tra ngay lập tức
     checkPaymentStatus();
     
-    // Sau đó kiểm tra định kỳ mỗi 2 giây (giảm xuống 2s cho nhanh hơn)
-    const interval = setInterval(checkPaymentStatus, 2000);
+    // Tự động kiểm tra (Polling) mỗi 3 giây theo yêu cầu
+    const interval = setInterval(checkPaymentStatus, 3000);
     return () => clearInterval(interval);
   }, [isOpen, orderId, paymentStatus]);
 
@@ -92,8 +92,17 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
     )
   }
 
+  // Cấu hình SEPAY QR
+  // Format: https://qr.sepay.vn/img?acc=SO_TAI_KHOAN&bank=NGAN_HANG&amount=SO_TIEN&des=NOI_DUNG
   const transferContent = orderId;
-  const qrUrl = `https://img.vietqr.io/image/${BANK_INFO.bankId}-${BANK_INFO.accountNo}-${BANK_INFO.template}.png?amount=${PRICING.finalPrice}&addInfo=${encodeURIComponent(transferContent)}&accountName=${encodeURIComponent(BANK_INFO.accountName)}`;
+  const sepayParams = new URLSearchParams({
+    acc: BANK_INFO.accountNo,
+    bank: BANK_INFO.bankId,
+    amount: PRICING.finalPrice.toString(),
+    des: transferContent
+  });
+  
+  const qrUrl = `https://qr.sepay.vn/img?${sepayParams.toString()}`;
 
   const handleCopy = (text: string, field: string) => {
     navigator.clipboard.writeText(text);
@@ -156,7 +165,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
 
                 <img 
                   src={qrUrl} 
-                  alt="VietQR Code" 
+                  alt="Sepay QR Code" 
                   className="w-56 h-56 md:w-64 md:h-64 object-contain"
                 />
                 <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500/50 shadow-[0_0_10px_rgba(99,102,241,0.8)] animate-scan pointer-events-none rounded-xl"></div>

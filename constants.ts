@@ -1,3 +1,4 @@
+
 import { FeatureItem, Speaker, BundlePricing } from './types';
 
 export const PROGRAM_NAME = "AI APP & VIBE CODING";
@@ -18,8 +19,8 @@ export const ZALO_GROUP_URL = "https://zalo.me/g/vzmefh184";
 export const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxfBzhaTPCVv0wLfMenlNAGn7LZaMS1g5jhJPo53ZR_ew_m5MvbaMtYqZDPQpgQKO8QWA/exec"; 
 
 export const BANK_INFO = {
-  bankId: "TCB", // Techcombank
-  accountNo: "19036653277011",
+  bankId: "BIDV",
+  accountNo: "962476666688888",
   accountName: "NGUYEN PHUOC VINH HUNG",
   template: "compact2" // Giao diện QR
 };
@@ -28,42 +29,42 @@ export const FEATURES: FeatureItem[] = [
   {
     text: "Module 1: Tài khoản Google AI PRO chính chủ, 6 tháng",
     highlight: "(Veo 3 + NotebookLM Plus + Gemini PRO..)",
-    value: "1.500.000đ"
+    value: "900.000đ"
   },
   {
     text: "Module 2: Kỹ Thuật Prompt Nâng Cao",
     highlight: "Dành riêng Nano Banana Pro và Gemini 3.0 Pro",
-    value: "1.200.000đ"
+    value: "900.000đ"
   },
   {
     text: "Module 3: Chatbot AI Vibe Coding",
     highlight: "Xây dựng chatbot hỗ trợ lập trình viên",
-    value: "1.800.000đ"
+    value: "1.200.000đ"
   },
   {
     text: "Module 4: Chatbot chuyên sâu",
     highlight: "Tối ưu riêng cho Nano Banana Pro",
-    value: "1.800.000đ"
+    value: "1.200.000đ"
   },
   {
     text: "Module 5: Landing Page AI",
     highlight: "Tự động hóa tạo trang đích chuyển đổi cao",
-    value: "2.000.000đ"
+    value: "1.500.000đ"
   },
   {
     text: "Module 6: Tự Vibe Code Hệ thống",
     highlight: "Email AI Automation",
-    value: "1.200.000đ"
+    value: "900.000đ"
   },
   {
     text: "Module 7: App AI Thực Tế",
     highlight: "Định hướng ứng dụng AI Vibe Code cho công việc hàng ngày",
-    value: "1.200.000đ"
+    value: "900.000đ"
   },
   {
     text: "Module 8: Video Record Full Buổi Học (4K)",
     highlight: "Xem lại trọn đời + Full Source Code + Tài liệu",
-    value: "2.500.000đ"
+    value: "1.000.000đ"
   }
 ];
 
@@ -83,9 +84,9 @@ export const SPEAKER_INFO: Speaker = {
 export const PRICING: BundlePricing = {
   // Tổng giá trị thực tế của các module
   originalPrice: 8500000, 
-  // Số tiền giảm
+  // Số tiền giảm (8.500.000 - 397.000)
   discountAmount: 8103000,
-  // Giá cuối cùng: 397k
+  // Giá cuối cùng
   finalPrice: 397000
 };
 

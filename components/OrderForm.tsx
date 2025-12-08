@@ -24,17 +24,11 @@ const OrderForm: React.FC<OrderFormProps> = ({ onSuccess }) => {
   };
 
   const generateOrderId = () => {
-    const storageKey = 'ai_vibe_last_seq';
-    let currentSeq;
-    const storedSeq = localStorage.getItem(storageKey);
-    if (storedSeq) {
-      currentSeq = parseInt(storedSeq, 10);
-    } else {
-      currentSeq = Math.floor(Math.random() * (8999 - 1000 + 1) + 1000);
-    }
-    const nextSeq = currentSeq + 1;
-    localStorage.setItem(storageKey, nextSeq.toString());
-    return `AI${nextSeq}`;
+    // Logic: Mã cố định "AI" + 5 số ngẫu nhiên
+    // Ví dụ: AI58291
+    // Sử dụng random để đảm bảo tính ngẫu nhiên mỗi lần tạo
+    const randomPart = Math.floor(10000 + Math.random() * 90000);
+    return `AI${randomPart}`;
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
