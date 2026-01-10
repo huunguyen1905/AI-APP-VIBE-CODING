@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Clock, Zap, Radio } from 'lucide-react';
+import { Radio } from 'lucide-react';
 import { COUNTDOWN_TARGET } from '../constants';
 
 const CountdownBar: React.FC = () => {
@@ -7,20 +8,13 @@ const CountdownBar: React.FC = () => {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      // Lấy thời gian mục tiêu từ file constants
       const targetDate = new Date(COUNTDOWN_TARGET).getTime();
       const now = new Date().getTime();
-      
-      // Tính khoảng cách thời gian
       const difference = targetDate - now;
-      
-      // Nếu hết giờ thì trả về 0
       return difference > 0 ? Math.floor(difference / 1000) : 0;
     };
 
-    // Set giá trị ban đầu ngay lập tức để tránh layout shift
     setTimeLeft(calculateTimeLeft());
-
     const timer = setInterval(() => {
       setTimeLeft(calculateTimeLeft());
     }, 1000);
@@ -39,23 +33,22 @@ const CountdownBar: React.FC = () => {
   const time = formatTime(timeLeft);
 
   return (
-    // Updated to deep Indigo/Violet/Cyber theme
-    <div className="sticky top-0 z-50 bg-[#0f172a] text-white shadow-lg border-b border-indigo-500/20">
+    <div className="sticky top-0 z-50 bg-[#0f172a] text-white shadow-lg border-b border-blue-500/20">
       {/* Decorative gradient line */}
-      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-violet-500 to-fuchsia-500"></div>
+      <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-700"></div>
       
       <div className="max-w-4xl mx-auto px-2 md:px-4 py-2 flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-between gap-y-2 gap-x-2">
         
         {/* Sale Badge & Text */}
         <div className="flex items-center justify-center gap-2 w-full sm:w-auto">
           <div className="flex items-center gap-2">
-            <span className="bg-red-600 text-white text-[10px] md:text-xs font-black px-2 py-0.5 rounded shadow-sm uppercase tracking-tighter whitespace-nowrap flex items-center gap-1 animate-pulse">
+            <span className="bg-blue-600 text-white text-[10px] md:text-xs font-black px-2 py-0.5 rounded shadow-sm uppercase tracking-tighter whitespace-nowrap flex items-center gap-1 animate-pulse">
                <Radio className="w-3 h-3" />
                LIVE Event
             </span>
           </div>
           
-          <div className="flex items-center gap-1.5 text-xs md:text-sm font-medium text-slate-300 whitespace-nowrap">
+          <div className="flex items-center gap-1.5 text-xs md:text-sm font-medium text-slate-400 whitespace-nowrap">
              <span className="hidden sm:inline">Ưu đãi giữ chỗ kết thúc trong:</span>
              <span className="sm:hidden">Ưu đãi kết thúc:</span>
           </div>

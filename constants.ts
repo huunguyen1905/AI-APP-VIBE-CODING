@@ -3,19 +3,15 @@ import { FeatureItem, Speaker, BundlePricing } from './types';
 
 export const PROGRAM_NAME = "AI APP & VIBE CODING";
 
-// Logic: Đếm ngược đến 19h30 ngày 12/12
-const now = new Date();
-const currentYear = now.getFullYear();
-// Tháng 12 là 11 (0-indexed)
-const targetDate = new Date(currentYear, 11, 12, 19, 30, 0);
+// Logic: Đếm ngược đến 19h30 ngày 27/01/2026
+const targetDate = new Date(2026, 0, 27, 19, 30, 0); // Month is 0-indexed (0 = Jan)
 
 export const COUNTDOWN_TARGET = targetDate.toISOString();
 
 // Link tham gia nhóm Zalo sau khi thanh toán thành công
 export const ZALO_GROUP_URL = "https://zalo.me/g/vzmefh184";
 
-// URL Web App Google Apps Script của bạn
-// QUAN TRỌNG: Bạn hãy thay thế URL dưới đây bằng URL mới sau khi Deploy đoạn mã App Script ở trên
+// URL Web App Google Apps Script
 export const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxfBzhaTPCVv0wLfMenlNAGn7LZaMS1g5jhJPo53ZR_ew_m5MvbaMtYqZDPQpgQKO8QWA/exec"; 
 
 export const BANK_INFO = {
@@ -70,7 +66,7 @@ export const FEATURES: FeatureItem[] = [
 
 export const SPEAKER_INFO: Speaker = {
   name: "Mr Nguyễn Phước Vĩnh Hưng",
-  role: "CEO công ty cổ phần công nghệ Duhava",
+  role: "Founder Duhava Technology JSC",
   imageUrl: "https://i.imgur.com/HIDog7f.jpeg",
   achievements: [
     "Kinh nghiệm Kinh Doanh Online từ 2016",
@@ -82,11 +78,8 @@ export const SPEAKER_INFO: Speaker = {
 };
 
 export const PRICING: BundlePricing = {
-  // Tổng giá trị thực tế của các module
   originalPrice: 8500000, 
-  // Số tiền giảm (8.500.000 - 397.000)
   discountAmount: 8103000,
-  // Giá cuối cùng
   finalPrice: 397000
 };
 

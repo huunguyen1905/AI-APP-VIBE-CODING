@@ -1,5 +1,6 @@
+
 import React, { useState, useEffect } from 'react';
-import { Copy, Check, X, ShieldCheck, Download, Loader2, Sparkles, PartyPopper } from 'lucide-react';
+import { Copy, Check, X, Download, Loader2, PartyPopper } from 'lucide-react';
 import { BANK_INFO, PRICING, PROGRAM_NAME, GOOGLE_SHEET_WEBAPP_URL, ZALO_GROUP_URL } from '../constants';
 
 interface PaymentModalProps {
@@ -18,25 +19,16 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
 
     const checkPaymentStatus = async () => {
       try {
-        // Thêm tham số _t (timestamp) để tránh browser cache kết quả cũ
         const response = await fetch(`${GOOGLE_SHEET_WEBAPP_URL}?orderId=${orderId}&_t=${Date.now()}`);
         const data = await response.json();
-        
-        // Chuyển status về chữ hoa để so sánh (tránh lỗi do nhập Paid/paid/PAID)
         const status = data.status ? data.status.toString().toUpperCase() : '';
-        
         if (status === 'PAID' || status === 'SUCCESS' || status === 'DONE') {
           setPaymentStatus('success');
         }
-      } catch (error) {
-        // Silent error
-      }
+      } catch (error) {}
     };
 
-    // Kiểm tra ngay lập tức
     checkPaymentStatus();
-    
-    // Tự động kiểm tra (Polling) mỗi 3 giây theo yêu cầu
     const interval = setInterval(checkPaymentStatus, 3000);
     return () => clearInterval(interval);
   }, [isOpen, orderId, paymentStatus]);
@@ -50,13 +42,13 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
           <div className="fixed inset-0 bg-gray-900/90 backdrop-blur-md animate-fade-in" onClick={onClose}></div>
           <div className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden p-8 text-center animate-scale-up my-8">
              <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
-                <div className="absolute top-[-20%] left-[-20%] w-[140%] h-[140%] bg-[radial-gradient(circle,rgba(139,92,246,0.1)_0%,transparent_70%)] animate-pulse"></div>
+                <div className="absolute top-[-20%] left-[-20%] w-[140%] h-[140%] bg-[radial-gradient(circle,rgba(37,99,235,0.1)_0%,transparent_70%)] animate-pulse"></div>
              </div>
 
              <div className="relative z-10">
-               <div className="inline-flex items-center justify-center w-24 h-24 bg-violet-100 rounded-full mb-6 relative">
-                 <div className="absolute inset-0 bg-violet-400 rounded-full animate-ping opacity-20"></div>
-                 <PartyPopper className="w-12 h-12 text-violet-600" />
+               <div className="inline-flex items-center justify-center w-24 h-24 bg-blue-50 rounded-full mb-6 relative">
+                 <div className="absolute inset-0 bg-blue-400 rounded-full animate-ping opacity-20"></div>
+                 <PartyPopper className="w-12 h-12 text-blue-600" />
                </div>
                
                <h3 className="text-3xl font-black text-gray-900 mb-2">ĐĂNG KÝ THÀNH CÔNG!</h3>
@@ -92,8 +84,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
     )
   }
 
-  // Cấu hình SEPAY QR
-  // Format: https://qr.sepay.vn/img?acc=SO_TAI_KHOAN&bank=NGAN_HANG&amount=SO_TIEN&des=NOI_DUNG
   const transferContent = orderId;
   const sepayParams = new URLSearchParams({
     acc: BANK_INFO.accountNo,
@@ -147,18 +137,18 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
             <X className="w-5 h-5 text-gray-500" />
           </button>
 
-          <div className="w-full md:w-1/2 bg-gradient-to-br from-indigo-50 to-violet-100 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden">
-            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-400 via-violet-500 to-fuchsia-500"></div>
+          <div className="w-full md:w-1/2 bg-gradient-to-br from-blue-50 to-indigo-100 p-8 flex flex-col items-center justify-center text-center relative overflow-hidden">
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-700"></div>
             
             <h3 className="text-2xl font-black text-gray-800 mb-2">Thanh toán vé tham dự</h3>
             <p className="text-gray-600 mb-6 text-sm">Quét mã để giữ chỗ ngay lập tức</p>
             
             <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-indigo-400 to-fuchsia-500 rounded-2xl blur opacity-30 group-hover:opacity-70 transition duration-1000"></div>
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-70 transition duration-1000"></div>
               <div className="relative bg-white p-3 rounded-xl shadow-lg">
                 <button 
                   onClick={handleDownloadQR}
-                  className="absolute top-2 right-2 p-1.5 bg-white/80 hover:bg-white text-gray-400 hover:text-indigo-600 rounded-lg shadow-sm border border-gray-100 transition-all z-20"
+                  className="absolute top-2 right-2 p-1.5 bg-white/80 hover:bg-white text-gray-400 hover:text-blue-600 rounded-lg shadow-sm border border-gray-100 transition-all z-20"
                 >
                   <Download className="w-4 h-4" />
                 </button>
@@ -168,30 +158,30 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
                   alt="Sepay QR Code" 
                   className="w-56 h-56 md:w-64 md:h-64 object-contain"
                 />
-                <div className="absolute top-0 left-0 w-full h-1 bg-indigo-500/50 shadow-[0_0_10px_rgba(99,102,241,0.8)] animate-scan pointer-events-none rounded-xl"></div>
+                <div className="absolute top-0 left-0 w-full h-1 bg-blue-500/50 shadow-[0_0_10px_rgba(37,99,235,0.8)] animate-scan pointer-events-none rounded-xl"></div>
               </div>
             </div>
 
             <div className="mt-6 flex flex-col gap-2 items-center">
-               <div className="flex items-center gap-2 text-indigo-700 font-medium bg-indigo-100/50 px-4 py-2 rounded-full">
+               <div className="flex items-center gap-2 text-blue-700 font-medium bg-blue-100/50 px-4 py-2 rounded-full border border-blue-200/50">
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  <span>Đang chờ xác nhận...</span>
+                  <span>Hệ thống đang chờ lệnh...</span>
                </div>
             </div>
           </div>
 
           <div className="w-full md:w-1/2 p-8 bg-white flex flex-col justify-center">
             <div className="mb-6">
-              <p className="text-sm text-gray-500 uppercase tracking-wide font-semibold mb-1">Đơn hàng</p>
+              <p className="text-sm text-gray-500 uppercase tracking-wide font-semibold mb-1">Xác nhận đăng ký</p>
               <h4 className="text-xl font-bold text-gray-800">{PROGRAM_NAME}</h4>
               <p className="text-sm text-gray-500 mt-1">Học viên: <span className="text-gray-900 font-medium">{customerName}</span></p>
             </div>
 
             <div className="space-y-5">
-              <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 hover:border-indigo-200 transition-colors">
+              <div className="bg-gray-50 p-4 rounded-xl border border-gray-100 hover:border-blue-200 transition-colors">
                 <div className="flex justify-between items-center mb-1">
                   <span className="text-xs text-gray-500 font-semibold uppercase">Số tài khoản ({BANK_INFO.bankId})</span>
-                  <span className="text-xs text-indigo-600 font-bold bg-indigo-50 px-2 py-0.5 rounded">Sao chép</span>
+                  <span className="text-xs text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded">Sao chép</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-lg md:text-xl font-mono font-bold text-gray-800 tracking-wider">{BANK_INFO.accountNo}</span>
@@ -210,7 +200,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
                   <span className="text-xs text-gray-500 font-semibold uppercase">Số tiền</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-2xl font-bold text-indigo-600">{formatCurrency(PRICING.finalPrice)}</span>
+                  <span className="text-2xl font-bold text-blue-600">{formatCurrency(PRICING.finalPrice)}</span>
                 </div>
               </div>
 
@@ -218,7 +208,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
                 <div className="flex justify-between items-center mb-2">
                   <div className="flex items-center gap-2">
                      <span className="text-xs text-blue-600 font-bold uppercase">Nội dung chuyển khoản</span>
-                     <span className="bg-red-100 text-red-600 text-[10px] font-bold px-2 py-0.5 rounded border border-red-200 animate-pulse">QUAN TRỌNG</span>
+                     <span className="bg-indigo-100 text-indigo-600 text-[10px] font-bold px-2 py-0.5 rounded border border-indigo-200 animate-pulse">QUAN TRỌNG</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
@@ -236,7 +226,7 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
             <div className="mt-8">
               <button 
                 onClick={onClose}
-                className="w-full bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl shadow-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
               >
                 <Check className="w-5 h-5" />
                 TÔI ĐÃ CHUYỂN KHOẢN
@@ -246,15 +236,6 @@ const PaymentModal: React.FC<PaymentModalProps> = ({ isOpen, onClose, orderId, c
         </div>
         
         <style>{`
-          @keyframes scan {
-            0% { top: 0; opacity: 0; }
-            20% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-          }
-          .animate-scan {
-            animation: scan 2s linear infinite;
-          }
           @keyframes scale-up {
             0% { transform: scale(0.9); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }

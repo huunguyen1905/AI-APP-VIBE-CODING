@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="vi">
   <head>
@@ -11,7 +12,7 @@
           extend: {
             colors: {
               brand: {
-                primary: '#7c3aed', // Violet 600
+                primary: '#2563eb', // Blue 600
                 secondary: '#06b6d4', // Cyan 500
                 dark: '#0f172a', // Slate 900
                 light: '#f8fafc' // Slate 50
@@ -24,6 +25,7 @@
             animation: {
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
               'shimmer': 'shimmer 2.5s infinite',
+              'scan': 'scan 2s linear infinite',
             },
             keyframes: {
               fadeInUp: {
@@ -32,6 +34,12 @@
               },
               shimmer: {
                 '100%': { transform: 'translateX(100%)' },
+              },
+              scan: {
+                '0%': { top: '0', opacity: '0' },
+                '20%': { opacity: '1' },
+                '90%': { opacity: '1' },
+                '100%': { top: '100%', opacity: '0' }
               }
             }
           }
@@ -49,11 +57,11 @@
         background: #f1f1f1;
       }
       ::-webkit-scrollbar-thumb {
-        background: #a78bfa;
+        background: #93c5fd; /* blue-300 */
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #8b5cf6;
+        background: #2563eb; /* blue-600 */
       }
     </style>
 <script type="importmap">
@@ -71,7 +79,7 @@
 }
 </script>
 </head>
-  <body class="bg-slate-50 text-slate-900 antialiased overflow-x-hidden selection:bg-cyan-200 selection:text-cyan-900">
+  <body class="bg-slate-50 text-slate-900 antialiased overflow-x-hidden selection:bg-blue-100 selection:text-blue-900">
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>
