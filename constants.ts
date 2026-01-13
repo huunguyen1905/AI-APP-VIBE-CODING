@@ -8,8 +8,8 @@ const targetDate = new Date(2026, 0, 27, 19, 30, 0); // Month is 0-indexed (0 = 
 
 export const COUNTDOWN_TARGET = targetDate.toISOString();
 
-// Link tham gia nhóm Zalo sau khi thanh toán thành công
-export const ZALO_GROUP_URL = "https://zalo.me/g/vzmefh184";
+// Link tham gia nhóm Zalo sau khi thanh toán thành công (Duy nhất 1 link này)
+export const ZALO_GROUP_URL = "https://zalo.me/g/avnudx238";
 
 // URL Web App Google Apps Script
 export const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbxfBzhaTPCVv0wLfMenlNAGn7LZaMS1g5jhJPo53ZR_ew_m5MvbaMtYqZDPQpgQKO8QWA/exec"; 
@@ -79,8 +79,8 @@ export const SPEAKER_INFO: Speaker = {
 
 export const PRICING: BundlePricing = {
   originalPrice: 8500000, 
-  discountAmount: 8103000,
-  finalPrice: 397000
+  discountAmount: 8003000,
+  finalPrice: 497000
 };
 
 export const TARGET_AUDIENCE = [
