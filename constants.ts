@@ -79,8 +79,8 @@ export const SPEAKER_INFO: Speaker = {
 
 export const PRICING: BundlePricing = {
   originalPrice: 8500000, 
-  discountAmount: 8003000,
-  finalPrice: 497000
+  discountAmount: 7903000,
+  finalPrice: 597000
 };
 
 export const TARGET_AUDIENCE = [
